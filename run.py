@@ -5,4 +5,12 @@ __license__ = "MIT"
 __status__ = "Beta"
 
 
+from tools.selenium_driver import SeleniumDriver
+
+selenium_driver = SeleniumDriver()
+driver = selenium_driver.configure_webdriver()
+
 print("Inicializando...")
+
+
+selenium_driver.close_webdriver(driver)
