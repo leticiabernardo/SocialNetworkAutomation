@@ -16,5 +16,6 @@ print("Inicializando...")
 
 facebookTest = FacebookBot(config.FACEBOOK_USERNAME, helper.clean_password(config.FACEBOOK_PASSWORD), driver)
 facebookTest.login()
+facebookTest.say_happy_birthday()
 
 selenium_driver.close_webdriver(driver)
