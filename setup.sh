@@ -7,7 +7,7 @@
 #
 # Bash script to install the requirements of the project
 
-PREVPWD=`pwd`
+PREVPWD=$(pwd)
 
 if ! [ -x "$(command -v pip)" ]; then
   echo 'Error: pip is not installed.' >&2
