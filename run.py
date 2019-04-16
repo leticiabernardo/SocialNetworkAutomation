@@ -6,6 +6,7 @@ __status__ = "Beta"
 
 from tools.selenium_driver import SeleniumDriver
 from SNA_Facebook.sna_facebook import FacebookBot
+from SNA_Instagram.sna_instagram import InstagramBot
 import tools.helpers as helper
 import config
 
@@ -14,8 +15,12 @@ driver = selenium_driver.configure_webdriver()
 
 print("Inicializando...")
 
-facebookTest = FacebookBot(config.FACEBOOK_USERNAME, helper.clean_password(config.FACEBOOK_PASSWORD), driver)
-facebookTest.login()
-facebookTest.say_happy_birthday()
+#faceBot = FacebookBot(config.FACEBOOK_USERNAME, helper.clean_password(config.FACEBOOK_PASSWORD), driver)
+#faceBot.login()
+#faceBot.say_happy_birthday()
+
+instaBot = InstagramBot(config.INSTA_USERNAME, helper.clean_password(config.INSTA_PASSWORD), driver)
+instaBot.login()
 
 selenium_driver.close_webdriver(driver)
+
