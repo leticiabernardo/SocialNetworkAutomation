@@ -9,8 +9,8 @@ def clean_password(password):
 
 def happy_birthday_message(make_txt):
     dict_birthday = make_txt.read_data("dictionary/happy_birthday")
-    text_happy_birthday = dict_birthday[randint(0, len(dict_birthday) - 1)]
-    return text_happy_birthday
+    random_array_number = randint(0, len(dict_birthday) - 1)
+    return dict_birthday[random_array_number]
 
 
 def string_to_array(text_string):

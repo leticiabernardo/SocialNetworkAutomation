@@ -21,7 +21,9 @@ print("Inicializando...")
 
 instaBot = InstagramBot(config.INSTA_USERNAME, helper.clean_password(config.INSTA_PASSWORD), driver)
 instaBot.login()
-[instaBot.like_photo_by_hashtag(tag) for tag in helper.string_to_array(config.INSTA_TAGS_FOLLOW)]
+
+for tag in helper.string_to_array(config.INSTA_TAGS_FOLLOW):
+    instaBot.like_photo_by_hashtag(tag)
 
 selenium_driver.close_webdriver(driver)
 
