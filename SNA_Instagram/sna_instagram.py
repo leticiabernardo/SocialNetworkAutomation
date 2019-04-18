@@ -28,20 +28,19 @@ class InstagramBot:
         driver.get('https://www.instagram.com/explore/tags/' + hashtag + '/')
         time.sleep(2)
 
-        for i in range(1, 3):
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(2)
+
+        element_links = driver.find_elements_by_tag_name('a')
+        links_pic_href = [elem.get_attribute('href') for elem in element_links]
+
+        for pic_href in links_pic_href:
+            driver.get(pic_href)
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-            time.sleep(2)
 
-            element_links = driver.find_elements_by_tag_name('a')
-            links_pic_href = [elem.get_attribute('href') for elem in element_links]
-
-            for pic_href in links_pic_href:
-                driver.get(pic_href)
-                driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-
-                try:
-                    driver.find_element_by_xpath("//button/span[@aria-label='Curtir']").click()
-                    time.sleep(4)
-                except Exception as e:
-                    print("Error:", e)
-                    time.sleep(2)
+            try:
+                driver.find_element_by_xpath("//button/span[@aria-label='Curtir']").click()
+                time.sleep(4)
+            except Exception as e:
+                print("Error:", e)
+                time.sleep(2)

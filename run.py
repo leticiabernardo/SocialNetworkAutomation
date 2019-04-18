@@ -5,7 +5,7 @@ __license__ = "MIT"
 __status__ = "Beta"
 
 from tools.selenium_driver import SeleniumDriver
-from SNA_Facebook.sna_facebook import FacebookBot
+# from SNA_Facebook.sna_facebook import FacebookBot
 from SNA_Instagram.sna_instagram import InstagramBot
 import tools.helpers as helper
 import config
