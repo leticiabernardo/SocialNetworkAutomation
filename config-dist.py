@@ -8,7 +8,7 @@ INSTA_USERNAME = ""
 INSTA_PASSWORD = ""
 INSTA_TAGS_FOLLOW = "amazing, beautiful, adventure"
 INSTA_UNFOLLOW_DISABLED = "leh.ellen01"
-INSTA_COPY_FOLLOWERS_BY = "leh.ellen01"
+INSTA_COPY_FOLLOWERS_FROM = "leh.ellen01"
 
 
 """

@@ -61,7 +61,7 @@ if [ ! -f "config.py" ]; then
   echo
   read -p "Digite seu INSTA_TAGS_FOLLOW [amazing, beautiful, adventure]: " insta_tags
   read -p "Digite seu INSTA_UNFOLLOW_DISABLED [leh.ellen01]: "  insta_unfollow_disabled
-  read -p "Digite seu INSTA_COPY_FOLLOWERS_BY [leh.ellen01]: "  insta_copy_followers
+  read -p "Digite seu INSTA_COPY_FOLLOWERS_FROM [leh.ellen01]: "  insta_copy_followers
   echo
   read -p "Digite seu FACEBOOK_USERNAME []: "  facebook_username
   read -p "Digite seu FACEBOOK_PASSWORD []: " -s facebook_pass
@@ -95,7 +95,7 @@ INSTA_USERNAME = "${insta_username}"
 INSTA_PASSWORD = "${insta_pass}"
 INSTA_TAGS_FOLLOW = "${insta_tags}"
 INSTA_UNFOLLOW_DISABLED = "${insta_unfollow_disabled}"
-INSTA_COPY_FOLLOWERS_BY = "${insta_copy_followers}"
+INSTA_COPY_FOLLOWERS_FROM = "${insta_copy_followers}"
 """
 Facebook Access and Configurations
 """

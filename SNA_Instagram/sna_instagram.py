@@ -1,4 +1,5 @@
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException
 import time
 
 
@@ -44,3 +45,33 @@ class InstagramBot:
             except Exception as e:
                 print("Error:", e)
                 time.sleep(2)
+
+    def follow_by(self, copy_followers_from):
+        driver = self.driver
+
+        driver.get('https://www.instagram.com/' + copy_followers_from + '/')
+        time.sleep(2)
+
+        try:
+            login_button = driver.find_element_by_xpath("//a[@href='/" + copy_followers_from + "/followers/']")
+            login_button.click()
+            time.sleep(2)
+
+            driver.execute_script("document.getElementsByClassName('isgrP')[0].scroll(0,900)")
+            driver.execute_script("document.getElementsByClassName('isgrP')[0].scroll(0,900)")
+            time.sleep(2)
+
+            users_follow = driver.find_elements_by_css_selector(".isgrP li > div")
+
+            for user in users_follow:
+                button_action = user.find_element_by_css_selector("button")
+                # username_following = user.find_element_by_css_selector("div > div a").get_attribute("href")
+
+                if button_action.text == 'Seguir':
+                    button_action.click()
+                    time.sleep(2)
+
+        except NoSuchElementException:
+            return 0
+
+
