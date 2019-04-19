@@ -51,7 +51,6 @@ class FacebookBot:
                 data = "\n" + person_name + " | " + happy_birthday_text
                 self.make_txt.save_data("activities/historic_happy_birthday", data)
 
-                # exit()
             except NoSuchElementException:
                 pass
 

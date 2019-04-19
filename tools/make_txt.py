@@ -15,6 +15,4 @@ class MakeTxt:
 
         data_list = data.strip().split('\n')
 
-        print(data_list)
-
         return data_list
