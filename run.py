@@ -25,8 +25,10 @@ instaBot.login()
 # for tag in helper.string_to_array(config.INSTA_TAGS_FOLLOW):
 #     instaBot.like_photo_by_hashtag(tag)
 
-for user in helper.string_to_array(config.INSTA_COPY_FOLLOWERS_FROM):
-    instaBot.follow_by(user)
+# for user in helper.string_to_array(config.INSTA_COPY_FOLLOWERS_FROM):
+#     instaBot.follow_from(user)
+
+instaBot.unfollow(helper.string_to_array(config.INSTA_UNFOLLOW_DISABLED))
 
 selenium_driver.close_webdriver(driver)
 

@@ -1,6 +1,8 @@
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 import time
+from pprint import pprint
+import socket
 
 
 class InstagramBot:
@@ -46,7 +48,7 @@ class InstagramBot:
                 print("Error:", e)
                 time.sleep(2)
 
-    def follow_by(self, copy_followers_from):
+    def follow_from(self, copy_followers_from):
         driver = self.driver
 
         driver.get('https://www.instagram.com/' + copy_followers_from + '/')
@@ -74,4 +76,30 @@ class InstagramBot:
         except NoSuchElementException:
             return 0
 
+    def unfollow(self, unfollow_disabled):
+        driver = self.driver
+        driver.get('https://www.instagram.com/' + self.username + '/')
+        time.sleep(2)
 
+        login_button = driver.find_element_by_xpath("//a[@href='/" + self.username + "/following/']")
+        login_button.click()
+        time.sleep(2)
+
+        try:
+
+            links_unfollow = driver.find_elements_by_css_selector(".isgrP li > div")
+
+            for link_unfollow in links_unfollow:
+                username_following = link_unfollow.find_element_by_css_selector("div:nth-child(2) > div a").get_attribute("pathname")
+                username_following = username_following.replace("/", "")
+
+                if username_following not in unfollow_disabled:
+                    button_action = link_unfollow.find_element_by_css_selector("button")
+                    button_action.click()
+                    time.sleep(1)
+
+                    driver.find_element_by_xpath("//button[text()='Deixar de seguir']").click()
+                    time.sleep(2)
+
+        except NoSuchElementException:
+            return 0
