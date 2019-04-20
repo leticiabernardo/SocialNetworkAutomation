@@ -15,7 +15,7 @@ class FacebookBot:
     def login(self):
         driver = self.driver
         driver.get("https://www.facebook.com/")
-        time.sleep(4)
+        time.sleep(2)
 
         user_field = driver.find_element_by_id("email")
         user_field.send_keys(self.username)
@@ -35,7 +35,7 @@ class FacebookBot:
         time.sleep(4)
         self.clean_page(driver)
 
-        for element in self.driver.find_elements_by_css_selector('li._tzm'):
+        for element in driver.find_elements_by_css_selector('li._tzm'):
             person_name_obj = element.find_element_by_tag_name("a")
 
             try:
@@ -54,24 +54,63 @@ class FacebookBot:
             except NoSuchElementException:
                 pass
 
+    def like_posts(self):
+        driver = self.driver
+
+        if driver.current_url != "https://www.facebook.com/":
+            driver.get("https://www.facebook.com/")
+            time.sleep(4)
+
+        self.clean_page(driver)
+
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        for i in range(1, 3):
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            time.sleep(3)
+
+        posts2 = driver.find_element_by_css_selector("[role='feed']")
+        feed_history = posts2.find_elements_by_css_selector("[data-testid='fbfeed_story']")
+
+        try:
+            for post in feed_history:
+                like = post.find_element_by_css_selector("[data-testid='UFI2ReactionLink']")
+
+                if like.get_attribute("aria-pressed") == "false":
+                    try:
+                        z = "arguments[0].setAttribute('style', 'position:relative;z-index:99999')"
+                        driver.execute_script(z, like)
+                        time.sleep(1)
+                        x = str(int(like.location['x']))
+                        y = str(int(like.location['y']))
+                        driver.execute_script("window.scrollTo(" + x + "," + y + ")")
+                        time.sleep(1)
+
+                        try:
+                            like.click()
+                        except Exception as err2:
+                            time.sleep(3)
+                            try:
+                                driver.find_elements_by_class_name('layerCancel')[0].click()
+                            except NoSuchElementException:
+                                pass
+
+                            print("ERR 2:", err2)
+
+                    except Exception as err:
+                        time.sleep(3)
+                        try:
+                            driver.find_elements_by_class_name('layerCancel')[0].click()
+                        except NoSuchElementException:
+                            pass
+                        print(err)
+
+        except NoSuchElementException:
+            print("Não há postagens")
+            pass
+
     @staticmethod
     def clean_page(driver):
         try:
             driver.find_elements_by_class_name("_3ixn")[0].click()
-        except IndexError:
-            pass
-
-        try:
-            driver.find_elements_by_class_name("AdBox")[0].click()
-        except IndexError:
-            pass
-
-        try:
-            driver.find_elements_by_class_name("Ad")[0].click()
-        except IndexError:
-            pass
-
-        try:
-            driver.find_elements_by_class_name("advert")[0].click()
         except IndexError:
             pass

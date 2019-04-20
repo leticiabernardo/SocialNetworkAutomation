@@ -5,8 +5,8 @@ __license__ = "MIT"
 __status__ = "Beta"
 
 from tools.selenium_driver import SeleniumDriver
-# from SNA_Facebook.sna_facebook import FacebookBot
-from SNA_Instagram.sna_instagram import InstagramBot
+from SNA_Facebook.sna_facebook import FacebookBot
+#from SNA_Instagram.sna_instagram import InstagramBot
 import tools.helpers as helper
 import config
 
@@ -15,12 +15,18 @@ driver = selenium_driver.configure_webdriver()
 
 print("Inicializando...")
 
-#faceBot = FacebookBot(config.FACEBOOK_USERNAME, helper.clean_password(config.FACEBOOK_PASSWORD), driver)
-#faceBot.login()
+# ---------------
+# FACEBOOK BOT
+faceBot = FacebookBot(config.FACEBOOK_USERNAME, helper.clean_password(config.FACEBOOK_PASSWORD), driver)
+faceBot.login()
 #faceBot.say_happy_birthday()
+faceBot.like_posts()
 
-instaBot = InstagramBot(config.INSTA_USERNAME, helper.clean_password(config.INSTA_PASSWORD), driver)
-instaBot.login()
+
+# ---------------
+# INSTAGRAM BOT
+#instaBot = InstagramBot(config.INSTA_USERNAME, helper.clean_password(config.INSTA_PASSWORD), driver)
+#instaBot.login()
 
 # for tag in helper.string_to_array(config.INSTA_TAGS_FOLLOW):
 #     instaBot.like_photo_by_hashtag(tag)
@@ -28,7 +34,7 @@ instaBot.login()
 # for user in helper.string_to_array(config.INSTA_COPY_FOLLOWERS_FROM):
 #     instaBot.follow_from(user)
 
-instaBot.unfollow(helper.string_to_array(config.INSTA_UNFOLLOW_DISABLED))
+#instaBot.unfollow(helper.string_to_array(config.INSTA_UNFOLLOW_DISABLED))
+
 
 selenium_driver.close_webdriver(driver)
-
