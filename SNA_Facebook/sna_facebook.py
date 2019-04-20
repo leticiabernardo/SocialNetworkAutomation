@@ -68,8 +68,8 @@ class FacebookBot:
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             time.sleep(3)
 
-        posts2 = driver.find_element_by_css_selector("[role='feed']")
-        feed_history = posts2.find_elements_by_css_selector("[data-testid='fbfeed_story']")
+        feed = driver.find_element_by_css_selector("[role='feed']")
+        feed_history = feed.find_elements_by_css_selector("[data-testid='fbfeed_story']")
 
         try:
             for post in feed_history:
