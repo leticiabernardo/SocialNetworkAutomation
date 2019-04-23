@@ -13,12 +13,14 @@ class SeleniumDriver:
             options.add_argument('--ignore-certificate-errors')
             options.add_argument('--ignore-ssl-errors')
             options.add_argument("--disable-notifications")
+            options.add_argument("--headless")
             driver = webdriver.Chrome(chrome_options=options, executable_path=r"setup/windows/chromedriver.exe")
         else:
             options = webdriver.ChromeOptions()
             options.add_argument('--ignore-certificate-errors')
             options.add_argument('--ignore-ssl-errors')
             options.add_argument("--disable-notifications")
+            options.add_argument("--headless")
             driver = webdriver.Chrome(chrome_options=options, executable_path=r"setup/linux/chromedriver")
 
             # Geckodriver
