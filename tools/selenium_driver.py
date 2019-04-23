@@ -5,22 +5,26 @@ import platform
 class SeleniumDriver:
 
     @staticmethod
-    def configure_webdriver():
+    def configure_webdriver(hide_browser=1):
         if platform.system() == 'Windows':
             # ChromeDriver 2.41
             # https://chromedriver.storage.googleapis.com/index.html?path=2.41/
             options = webdriver.ChromeOptions()
+            if hide_browser == 1:
+                options.add_argument("--headless")
+
             options.add_argument('--ignore-certificate-errors')
             options.add_argument('--ignore-ssl-errors')
             options.add_argument("--disable-notifications")
-            options.add_argument("--headless")
             driver = webdriver.Chrome(chrome_options=options, executable_path=r"setup/windows/chromedriver.exe")
         else:
             options = webdriver.ChromeOptions()
+            if hide_browser == 1:
+                options.add_argument("--headless")
+
             options.add_argument('--ignore-certificate-errors')
             options.add_argument('--ignore-ssl-errors')
             options.add_argument("--disable-notifications")
-            options.add_argument("--headless")
             driver = webdriver.Chrome(chrome_options=options, executable_path=r"setup/linux/chromedriver")
 
             # Geckodriver

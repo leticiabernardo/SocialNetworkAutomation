@@ -51,7 +51,7 @@ if [ ! -f "config.py" ]; then
 
   echo "# -------------------"
   echo
-  echo "# Configurações: "
+  echo "# Configurações de Conta: "
   echo
   echo "# -------------------"
   echo
@@ -65,6 +65,13 @@ if [ ! -f "config.py" ]; then
   echo
   read -p "Digite seu FACEBOOK_USERNAME []: "  facebook_username
   read -p "Digite seu FACEBOOK_PASSWORD []: " -s facebook_pass
+  echo
+  echo "# -------------------"
+  echo
+  echo "# Configurações Gerais: "
+  echo
+  echo "# -------------------"
+  read -p "Deseja que realizar as ações em background. Se sim, digite 1 se não digite 0: " hide_browser
   echo
 
   insta_pass="$(echo -n "$insta_pass" | base64)"
@@ -101,6 +108,8 @@ Facebook Access and Configurations
 """
 FACEBOOK_USERNAME = "${facebook_username}"
 FACEBOOK_PASSWORD = "${facebook_pass}"
+
+HIDE_BROWSER = ${hide_browser}
 EOF
 
   #sudo vi config.py

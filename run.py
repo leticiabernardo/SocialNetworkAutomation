@@ -11,7 +11,7 @@ import tools.helpers as helper
 import config
 
 selenium_driver = SeleniumDriver()
-driver = selenium_driver.configure_webdriver()
+driver = selenium_driver.configure_webdriver(config.HIDE_BROWSER)
 
 print("Inicializando...")
 
