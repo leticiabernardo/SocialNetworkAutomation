@@ -5,35 +5,39 @@ import platform
 class SeleniumDriver:
 
     @staticmethod
-    def configure_webdriver(hide_browser=1):
+    def configure_webdriver(browser='chrome', hide_browser=1):
+        driver = None
         if platform.system() == 'Windows':
-            # ChromeDriver 2.41
-            # https://chromedriver.storage.googleapis.com/index.html?path=2.41/
-            options = webdriver.ChromeOptions()
-            if hide_browser == 1:
-                options.add_argument("--headless")
+            if browser == 'chrome':
+                # ChromeDriver 2.41
+                # https://chromedriver.storage.googleapis.com/index.html?path=2.41/
+                options = webdriver.ChromeOptions()
+                if hide_browser == 1:
+                    options.add_argument("--headless")
 
-            options.add_argument('--ignore-certificate-errors')
-            options.add_argument('--ignore-ssl-errors')
-            options.add_argument("--disable-notifications")
-            driver = webdriver.Chrome(chrome_options=options, executable_path=r"setup/windows/chromedriver.exe")
+                options.add_argument('--ignore-certificate-errors')
+                options.add_argument('--ignore-ssl-errors')
+                options.add_argument("--disable-notifications")
+                driver = webdriver.Chrome(chrome_options=options, executable_path=r"setup/windows/chromedriver.exe")
+            elif browser == 'firefox':
+                driver = webdriver.Firefox(executable_path=r'setup/linux/geckodriver.exe')
         else:
-            options = webdriver.ChromeOptions()
-            if hide_browser == 1:
-                options.add_argument("--headless")
+            if browser == 'chrome':
+                options = webdriver.ChromeOptions()
+                if hide_browser == 1:
+                    options.add_argument("--headless")
 
-            options.add_argument('--ignore-certificate-errors')
-            options.add_argument('--ignore-ssl-errors')
-            options.add_argument("--disable-notifications")
-            driver = webdriver.Chrome(chrome_options=options, executable_path=r"setup/linux/chromedriver")
+                options.add_argument('--ignore-certificate-errors')
+                options.add_argument('--ignore-ssl-errors')
+                options.add_argument("--disable-notifications")
+                driver = webdriver.Chrome(chrome_options=options, executable_path=r"setup/linux/chromedriver")
 
-            # Geckodriver
-            # driver = webdriver.Firefox()
-            # from selenium import webdriver
-            # from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
-            #
-            # binary = FirefoxBinary('path/to/installed firefox binary')
-            # browser = webdriver.Firefox(firefox_binary=binary)
+            elif browser == 'firefox':
+                options = webdriver.FirefoxOptions()
+                if hide_browser == 1:
+                    options.add_argument('-headless')
+
+                driver = webdriver.Firefox(executable_path="./setup/linux/geckodriver", firefox_options=options)
 
         driver.maximize_window()
         return driver

@@ -71,6 +71,7 @@ if [ ! -f "config.py" ]; then
   echo "# Configurações Gerais: "
   echo
   echo "# -------------------"
+  read -p "Qual é o navegador padrão? " default_browser
   read -p "Deseja que realizar as ações em background. Se sim, digite 1 se não digite 0: " hide_browser
   echo
 
@@ -109,6 +110,7 @@ Facebook Access and Configurations
 FACEBOOK_USERNAME = "${facebook_username}"
 FACEBOOK_PASSWORD = "${facebook_pass}"
 
+DEFAULT_BROWSER = ${default_browser}
 HIDE_BROWSER = ${hide_browser}
 EOF
 

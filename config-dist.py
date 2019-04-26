@@ -17,4 +17,5 @@ Facebook Access and Configurations
 FACEBOOK_USERNAME = ""
 FACEBOOK_PASSWORD = ""
 
+DEFAULT_BROWSER = 'chrome'
 HIDE_BROWSER = 1

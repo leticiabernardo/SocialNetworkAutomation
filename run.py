@@ -11,7 +11,7 @@ import tools.helpers as helper
 import config
 
 selenium_driver = SeleniumDriver()
-driver = selenium_driver.configure_webdriver(config.HIDE_BROWSER)
+driver = selenium_driver.configure_webdriver(config.DEFAULT_BROWSER, config.HIDE_BROWSER)
 
 print("Inicializando...")
 
@@ -21,7 +21,7 @@ faceBot = FacebookBot(config.FACEBOOK_USERNAME, helper.clean_password(config.FAC
 faceBot.login()
 #faceBot.say_happy_birthday()
 faceBot.like_posts()
-
+#faceBot.react_to_posts()
 
 # ---------------
 # INSTAGRAM BOT
